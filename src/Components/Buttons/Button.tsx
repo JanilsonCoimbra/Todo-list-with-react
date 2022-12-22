@@ -2,7 +2,11 @@ import { type } from "os";
 import React from "react";
 import Style from './Button.module.scss';
 
-class Button extends React.Component<{children: string, type?: "button" | "submit" | "reset" | undefined}> {
+class Button extends React.Component<
+{
+    children: string, type?: "button" | "submit" | "reset" | undefined
+    onClick?: () => void
+}> {
     render() {
         // const estaAtivo = true
         // const style = {
@@ -10,7 +14,7 @@ class Button extends React.Component<{children: string, type?: "button" | "submi
         // }
         const {type = "button"} = this.props
         return (
-            <button type={type} className={Style.botao}>{this.props.children}</button>
+            <button onClick={this.props.onClick} type={type} className={Style.botao}>{this.props.children}</button>
         )
     }
 }
