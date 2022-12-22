@@ -2,15 +2,26 @@ import React from "react";
 import Button from "../Buttons/Button";
 import { Itarefa } from "../Types/tarefas";
 import Style from './Formulario.module.scss';
+import {v4 as uuid} from "uuid";
 
 class Formulario extends React.Component<{setTarefas: React.Dispatch<React.SetStateAction<Itarefa[]>>}> {
     state = {
         tarefa: "",
-        tempo: "00:00:00"
+        tempo: "00:00:00",
     };
     adicionarTarefa(e: React.FormEvent){
         e.preventDefault()
-        this.props.setTarefas(tarefas => [...tarefas, {...this.state}])
+        this.props.setTarefas(tarefas => [...tarefas, {...this.state, 
+            selected: false,
+            complet: false,
+            id: uuid()
+        }])
+
+        this.setState({
+            tarefa: "",
+            tempo: "00:00:00",
+        })
+        
     }   
     render() {
         return (
